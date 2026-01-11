@@ -105,22 +105,11 @@ Web-Lego-Loco/
 ### Installation
 1. Clone or download the repository
 2. Serve the files using a local web server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
-   
-   # Using Node.js
-   npx serve .
-   
-   # Using PHP
-   php -S localhost:8000
-   ```
-3. Open `http://localhost:8000` in your browser
+3. Open the given localhost url in your browser
 
 ### Development
 - No build process required - pure vanilla JavaScript
 - All assets are self-contained
-- Real-time development with browser refresh
 
 ## 🎮 Gameplay
 
