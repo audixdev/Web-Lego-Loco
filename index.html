@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO Loco Web Remake</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="toolbox">
+            <h3>Toolbox</h3>
+            <div id="tileCategories">
+                <div class="category" data-category="tracks">
+                    <h4>Tracks</h4>
+                    <div class="tiles" id="trackTiles"></div>
+                </div>
+                <div class="category" data-category="roads">
+                    <h4>Roads</h4>
+                    <div class="tiles" id="roadTiles"></div>
+                </div>
+                <div class="category" data-category="buildings">
+                    <h4>Buildings</h4>
+                    <div class="tiles" id="buildingTiles"></div>
+                </div>
+                <div class="category" data-category="tools">
+                    <h4>Tools</h4>
+                    <div class="tiles" id="toolTiles"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <div id="debugOverlay">
+            <div>FPS: <span id="fps">0</span></div>
+            <div>Camera: <span id="cameraPos">0, 0</span></div>
+            <div>Mouse: <span id="mousePos">0, 0</span></div>
+            <div>Tile: <span id="tilePos">0, 0</span></div>
+            <div>Grid: <span id="gridSize">0</span> tiles</div>
+        </div> -->
+        
+        <div id="controls">
+            <div class="control-group">
+                <h4>Controls</h4>
+                <div>Left Click: Place Tile</div>
+                <div>Right Click: Erase Tile</div>
+                <div>Drag: Pan Camera</div>
+                <div>WASD/Arrows: Move Camera</div>
+                <div>R: Rotate Tile</div>
+                <div>G: Toggle Grid</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/tiles.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/gameState.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/toolbox.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
