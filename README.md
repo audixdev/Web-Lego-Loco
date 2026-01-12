@@ -1,4 +1,4 @@
-# 🚂 LEGO Loco Web Remake
+# 🚂 LEGO Loco Web Remake - v0.3 early early alpha build
 
 A modern web-based remake of the classic LEGO Loco game built with vanilla JavaScript and HTML5 Canvas.
 
@@ -10,8 +10,7 @@ LEGO Loco Web Remake is a browser-based construction and simulation game inspire
 
 ## 🐛 Known Issues & Limitations
 
-- Rail turns are not the correct size yet
-- The house and other buildings are the wrong size also
+- SOME Rails are not fully connected correctly
 - Train simulation not yet implemented
 - No sound effects or music
 - Limited to 2D top-down view

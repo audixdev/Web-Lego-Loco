@@ -38,6 +38,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railTurnLeftUp',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'north']
         },
         RAIL_TURN_LEFT_DOWN: {
@@ -46,6 +48,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railTurnLeftDown',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'south']
         },
         RAIL_TURN_RIGHT_UP: {
@@ -54,6 +58,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railTurnRightUp',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'north']
         },
         RAIL_TURN_RIGHT_DOWN: {
@@ -62,6 +68,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railTurnRightDown',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'south']
         },
         DEPOT_UP_CLOSED: {
@@ -70,6 +78,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotUpClosed',
             solid: true,
+            width: 1,
+            height: 2,
             connections: ['south']
         },
         DEPOT_UP_OPEN: {
@@ -78,6 +88,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotUpOpen',
             solid: true,
+            width: 1,
+            height: 2,
             connections: ['south']
         },
         DEPOT_DOWN_CLOSED: {
@@ -86,6 +98,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotDownClosed',
             solid: true,
+            width: 1,
+            height: 2,
             connections: ['north']
         },
         DEPOT_DOWN_OPEN: {
@@ -94,6 +108,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotDownOpen',
             solid: true,
+            width: 1,
+            height: 2,
             connections: ['north']
         },
         DEPOT_LEFT_CLOSED: {
@@ -102,6 +118,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotLeftClosed',
             solid: true,
+            width: 2,
+            height: 1,
             connections: ['east']
         },
         DEPOT_LEFT_OPEN: {
@@ -110,6 +128,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotLeftOpen',
             solid: true,
+            width: 2,
+            height: 1,
             connections: ['east']
         },
         DEPOT_RIGHT_CLOSED: {
@@ -118,6 +138,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotRightClosed',
             solid: true,
+            width: 2,
+            height: 1,
             connections: ['west']
         },
         DEPOT_RIGHT_OPEN: {
@@ -126,6 +148,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotRightOpen',
             solid: true,
+            width: 2,
+            height: 1,
             connections: ['west']
         },
         ROAD_HORIZONTAL: {
@@ -190,6 +214,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'redHouse',
             solid: true,
+            width: 2,
+            height: 2,
             connections: []
         },
         DEPOT_UP_OCCUPIED: {
@@ -198,6 +224,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotUpOccupied',
             solid: true,
+            width: 1,
+            height: 2,
             connections: ['south']
         },
         DEPOT_DOWN_OCCUPIED: {
@@ -206,6 +234,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotDownOccupied',
             solid: true,
+            width: 1,
+            height: 2,
             connections: ['north']
         },
         DEPOT_LEFT_OCCUPIED: {
@@ -214,6 +244,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotLeftOccupied',
             solid: true,
+            width: 2,
+            height: 1,
             connections: ['east']
         },
         DEPOT_RIGHT_OCCUPIED: {
@@ -222,6 +254,8 @@ window.Tiles = {
             category: 'buildings',
             sprite: 'depotRightOccupied',
             solid: true,
+            width: 2,
+            height: 1,
             connections: ['west']
         },
         RAIL_SPLIT_HORIZONTAL_LEFT_DOWN_OFF: {
@@ -230,6 +264,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitHorizontalLeftDownOff',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'south']
         },
         RAIL_SPLIT_HORIZONTAL_LEFT_DOWN_ON: {
@@ -238,6 +274,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitHorizontalLeftDownOn',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'south']
         },
         RAIL_SPLIT_HORIZONTAL_LEFT_UP_OFF: {
@@ -246,6 +284,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitHorizontalLeftUpOff',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'north']
         },
         RAIL_SPLIT_HORIZONTAL_LEFT_UP_ON: {
@@ -254,6 +294,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitHorizontalLeftUpOn',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'north']
         },
         RAIL_SPLIT_HORIZONTAL_RIGHT_DOWN_OFF: {
@@ -262,6 +304,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitHorizontalRightDownOff',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'south']
         },
         RAIL_SPLIT_HORIZONTAL_RIGHT_DOWN_ON: {
@@ -270,6 +314,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitHorizontalRightDownOn',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'south']
         },
         RAIL_SPLIT_HORIZONTAL_RIGHT_UP_OFF: {
@@ -278,6 +324,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitHorizontalRightUpOff',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'north']
         },
         RAIL_SPLIT_HORIZONTAL_RIGHT_UP_ON: {
@@ -286,6 +334,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitHorizontalRightUpOn',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'north']
         },
         RAIL_SPLIT_VERTICAL_LEFT_DOWN_OFF: {
@@ -294,6 +344,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitVerticalLeftDownOff',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'south']
         },
         RAIL_SPLIT_VERTICAL_LEFT_DOWN_ON: {
@@ -302,6 +354,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitVerticalLeftDownOn',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'south']
         },
         RAIL_SPLIT_VERTICAL_LEFT_UP_OFF: {
@@ -310,6 +364,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitVerticalLeftUpOff',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'north']
         },
         RAIL_SPLIT_VERTICAL_LEFT_UP_ON: {
@@ -318,6 +374,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitVerticalLeftUpOn',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['west', 'north']
         },
         RAIL_SPLIT_VERTICAL_RIGHT_DOWN_OFF: {
@@ -326,6 +384,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitVerticalRightDownOff',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'south']
         },
         RAIL_SPLIT_VERTICAL_RIGHT_DOWN_ON: {
@@ -334,6 +394,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitVerticalRightDownOn',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'south']
         },
         RAIL_SPLIT_VERTICAL_RIGHT_UP_OFF: {
@@ -342,6 +404,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitVerticalRightUpOff',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'north']
         },
         RAIL_SPLIT_VERTICAL_RIGHT_UP_ON: {
@@ -350,6 +414,8 @@ window.Tiles = {
             category: 'tracks',
             sprite: 'railSplitVerticalRightUpOn',
             solid: true,
+            width: 2,
+            height: 2,
             connections: ['east', 'north']
         },
         ROAD_RAIL_CROSSING_CLOSED_HORIZONTAL: {

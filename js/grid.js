@@ -70,41 +70,124 @@ window.Grid = {
     },
     
     setTile(x, y, type, rotation = 0) {
-        const existingTile = this.getTile(x, y);
+        const tileType = Tiles.getTypeById(type);
+        const width = tileType ? (tileType.width || 1) : 1;
+        const height = tileType ? (tileType.height || 1) : 1;
         
-        if (!Tiles.canPlaceOn(type, existingTile)) {
-            return false;
+        // Check if all positions are valid and can be placed on
+        for (let dy = 0; dy < height; dy++) {
+            for (let dx = 0; dx < width; dx++) {
+                const checkX = x + dx;
+                const checkY = y + dy;
+                const existingTile = this.getTile(checkX, checkY);
+                
+                if (!Tiles.canPlaceOn(type, existingTile)) {
+                    return false;
+                }
+            }
         }
         
+        // Place the tile in all occupied positions
+        let success = false;
+        for (let dy = 0; dy < height; dy++) {
+            for (let dx = 0; dx < width; dx++) {
+                const placeX = x + dx;
+                const placeY = y + dy;
+                
+                const chunkPos = Utils.tileToChunk(placeX, placeY);
+                const localPos = {
+                    x: placeX - chunkPos.x * Utils.CHUNK_SIZE,
+                    y: placeY - chunkPos.y * Utils.CHUNK_SIZE
+                };
+                
+                if (localPos.x >= 0 && localPos.x < Utils.CHUNK_SIZE && 
+                    localPos.y >= 0 && localPos.y < Utils.CHUNK_SIZE) {
+                    
+                    const chunk = this.getChunk(chunkPos.x, chunkPos.y);
+                    
+                    // Only store the main tile data at the top-left position
+                    // Other positions store references to the main tile
+                    if (dx === 0 && dy === 0) {
+                        chunk.tiles[localPos.y][localPos.x] = this.createTile(placeX, placeY, type, rotation);
+                    } else {
+                        chunk.tiles[localPos.y][localPos.x] = this.createTile(placeX, placeY, type, rotation);
+                        // Mark as part of a larger tile
+                        chunk.tiles[localPos.y][localPos.x].isPartOfMultiTile = true;
+                        chunk.tiles[localPos.y][localPos.x].mainTileX = x;
+                        chunk.tiles[localPos.y][localPos.x].mainTileY = y;
+                    }
+                    
+                    chunk.needsUpdate = true;
+                    this.updateNeighbors(placeX, placeY);
+                    success = true;
+                }
+            }
+        }
+        
+        return success;
+    },
+    
+    removeTile(x, y) {
+        const tile = this.getTile(x, y);
+        if (!tile || tile.type === 'empty') return false;
+        
+        // If this is part of a multi-tile building, remove the entire building
+        if (tile.isPartOfMultiTile && tile.mainTileX !== undefined && tile.mainTileY !== undefined) {
+            return this.removeTile(tile.mainTileX, tile.mainTileY);
+        }
+        
+        // Check if this is the main tile of a multi-tile building
+        const tileType = Tiles.getTypeById(tile.type);
+        if (tileType) {
+            const width = tileType.width || 1;
+            const height = tileType.height || 1;
+            
+            // If this is a multi-tile building, remove all parts
+            if (width > 1 || height > 1) {
+                // Remove all parts of the multi-tile building
+                for (let dy = 0; dy < height; dy++) {
+                    for (let dx = 0; dx < width; dx++) {
+                        const removeX = x + dx;
+                        const removeY = y + dy;
+                        
+                        const chunkPos = Utils.tileToChunk(removeX, removeY);
+                        const localPos = {
+                            x: removeX - chunkPos.x * Utils.CHUNK_SIZE,
+                            y: removeY - chunkPos.y * Utils.CHUNK_SIZE
+                        };
+                        
+                        if (localPos.x >= 0 && localPos.x < Utils.CHUNK_SIZE && 
+                            localPos.y >= 0 && localPos.y < Utils.CHUNK_SIZE) {
+                            
+                            const chunk = this.getChunk(chunkPos.x, chunkPos.y);
+                            chunk.tiles[localPos.y][localPos.x] = this.createTile(removeX, removeY, 'empty', 0);
+                            chunk.needsUpdate = true;
+                            this.updateNeighbors(removeX, removeY);
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+        
+        // For single tiles, directly set to empty without going through setTile
         const chunkPos = Utils.tileToChunk(x, y);
         const localPos = {
             x: x - chunkPos.x * Utils.CHUNK_SIZE,
             y: y - chunkPos.y * Utils.CHUNK_SIZE
         };
         
-        if (localPos.x < 0 || localPos.x >= Utils.CHUNK_SIZE || 
-            localPos.y < 0 || localPos.y >= Utils.CHUNK_SIZE) {
-            return false;
+        if (localPos.x >= 0 && localPos.x < Utils.CHUNK_SIZE && 
+            localPos.y >= 0 && localPos.y < Utils.CHUNK_SIZE) {
+            
+            const chunk = this.getChunk(chunkPos.x, chunkPos.y);
+            chunk.tiles[localPos.y][localPos.x] = this.createTile(x, y, 'empty', 0);
+            chunk.needsUpdate = true;
+            this.updateNeighbors(x, y);
+            return true;
         }
         
-        const chunk = this.getChunk(chunkPos.x, chunkPos.y);
-        const oldTile = chunk.tiles[localPos.y][localPos.x];
-        
-        chunk.tiles[localPos.y][localPos.x] = this.createTile(x, y, type, rotation);
-        chunk.needsUpdate = true;
-        
-        this.updateNeighbors(x, y);
-        
-        this.updateNeighborTile(x - 1, y);
-        this.updateNeighborTile(x + 1, y);
-        this.updateNeighborTile(x, y - 1);
-        this.updateNeighborTile(x, y + 1);
-        
-        return true;
-    },
-    
-    removeTile(x, y) {
-        return this.setTile(x, y, 'empty', 0);
+        return false;
     },
     
     updateNeighbors(x, y) {

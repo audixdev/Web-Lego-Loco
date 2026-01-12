@@ -97,7 +97,20 @@ window.Renderer = {
     },
     
     renderTile(tile) {
-        const world = Utils.tileToWorld(tile.x, tile.y);
+        // Skip rendering secondary tiles of multi-tile buildings (they're rendered by the main tile)
+        if (tile.isPartOfMultiTile) {
+            return;
+        }
+        
+        // Use main tile position for multi-tile buildings
+        let renderX = tile.x;
+        let renderY = tile.y;
+        if (tile.mainTileX !== undefined && tile.mainTileY !== undefined) {
+            renderX = tile.mainTileX;
+            renderY = tile.mainTileY;
+        }
+        
+        const world = Utils.tileToWorld(renderX, renderY);
         const tileType = Tiles.getTypeById(tile.type);
         
         if (!tileType || !tileType.sprite) {
@@ -109,10 +122,14 @@ window.Renderer = {
             return;
         }
         
+        // Get tile size (default to 1x1 if not specified)
+        const tileWidth = (tileType.width || 1) * Utils.TILE_SIZE;
+        const tileHeight = (tileType.height || 1) * Utils.TILE_SIZE;
+        
         // Debug: Check if tile is actually visible
         const screenPos = this.worldToScreen(world.x, world.y);
-        if (screenPos.x < -Utils.TILE_SIZE || screenPos.x > this.canvas.width ||
-            screenPos.y < -Utils.TILE_SIZE || screenPos.y > this.canvas.height) {
+        if (screenPos.x < -tileWidth || screenPos.x > this.canvas.width ||
+            screenPos.y < -tileHeight || screenPos.y > this.canvas.height) {
             return;
         }
         
@@ -126,7 +143,7 @@ window.Renderer = {
         this.ctx.drawImage(
             sprite,
             0, 0,
-            Utils.TILE_SIZE, Utils.TILE_SIZE
+            tileWidth, tileHeight
         );
         
         this.restore();
@@ -180,6 +197,10 @@ window.Renderer = {
         const sprite = GameState.sprites[tileType.sprite];
         if (!sprite) return;
         
+        // Get tile size (default to 1x1 if not specified)
+        const tileWidth = (tileType.width || 1) * Utils.TILE_SIZE;
+        const tileHeight = (tileType.height || 1) * Utils.TILE_SIZE;
+        
         this.save();
         this.globalAlpha(alpha);
         this.translate(world.x, world.y);
@@ -187,12 +208,12 @@ window.Renderer = {
         this.ctx.drawImage(
             sprite,
             0, 0,
-            Utils.TILE_SIZE, Utils.TILE_SIZE
+            tileWidth, tileHeight
         );
         
         this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
         this.ctx.lineWidth = 2;
-        this.ctx.strokeRect(0, 0, Utils.TILE_SIZE, Utils.TILE_SIZE);
+        this.ctx.strokeRect(0, 0, tileWidth, tileHeight);
         
         this.restore();
     },

@@ -199,9 +199,12 @@ window.Input = {
     handleRightClickAction() {
         const tileX = GameState.mouse.tileX;
         const tileY = GameState.mouse.tileY;
+
+        // Replace the current tile with grass (OLD METHOD)
+        // GameState.placeTile(tileX, tileY, 'grass', 0);
         
-        // Replace the current tile with grass
-        GameState.placeTile(tileX, tileY, 'grass', 0);
+        // Remove the existing tile (this handles multi-tile buildings properly)
+        GameState.tiles.removeTile(tileX, tileY);
         
         const currentTime = Date.now();
         GameState.mouse.lastClickTime = currentTime;
