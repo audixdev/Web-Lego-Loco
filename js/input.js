@@ -50,7 +50,11 @@ window.Input = {
                 this.handleTileAction();
             }
         } else if (e.button === 2) {
-            GameState.startDrag(x, y);
+            if (e.shiftKey) {
+                GameState.startDrag(x, y);
+            } else {
+                this.handleRightClickAction();
+            }
         }
         
         e.preventDefault();
@@ -82,6 +86,10 @@ window.Input = {
         
         if (GameState.input.mouseButtons[0] && !e.shiftKey && !GameState.mouse.isDragging) {
             this.handleTileAction();
+        }
+        
+        if (GameState.input.mouseButtons[2] && !e.shiftKey && !GameState.mouse.isDragging) {
+            this.handleRightClickAction();
         }
     },
     
@@ -183,6 +191,17 @@ window.Input = {
         const tileY = GameState.mouse.tileY;
         
         GameState.handleTileAction(tileX, tileY);
+        
+        const currentTime = Date.now();
+        GameState.mouse.lastClickTime = currentTime;
+    },
+    
+    handleRightClickAction() {
+        const tileX = GameState.mouse.tileX;
+        const tileY = GameState.mouse.tileY;
+        
+        // Replace the current tile with grass
+        GameState.placeTile(tileX, tileY, 'grass', 0);
         
         const currentTime = Date.now();
         GameState.mouse.lastClickTime = currentTime;

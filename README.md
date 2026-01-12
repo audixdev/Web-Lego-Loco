@@ -10,8 +10,6 @@ LEGO Loco Web Remake is a browser-based construction and simulation game inspire
 
 ## 🐛 Known Issues & Limitations
 
-- Rails background not transparent
-- Remvoing tile doesn't work yet
 - Train simulation not yet implemented
 - No sound effects or music
 - Limited to 2D top-down view
@@ -41,7 +39,7 @@ LEGO Loco Web Remake is a browser-based construction and simulation game inspire
 |--------|---------|
 | Place Tile | Left Click |
 | Erase Tile | Right Click |
-| Pan Camera | Mouse Drag / WASD / Arrow Keys |
+| Pan Camera | WASD / Arrow Keys |
 | Save Game | Ctrl+E |
 | Load Game | Ctrl+O |
 | Screenshot | Ctrl+P |

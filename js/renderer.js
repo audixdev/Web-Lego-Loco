@@ -27,8 +27,31 @@ window.Renderer = {
     },
     
     clear() {
+        // Fill with a solid color first (same as grass color for any gaps)
         this.ctx.fillStyle = '#4a5f3a';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Render grid sprite as tiled background
+        const gridSprite = GameState.sprites['grid'];
+        if (gridSprite) {
+            const tileSize = Utils.TILE_SIZE;
+            const startX = Math.floor(GameState.viewPosition.x / tileSize) * tileSize;
+            const startY = Math.floor(GameState.viewPosition.y / tileSize) * tileSize;
+            const endX = startX + this.canvas.width + tileSize;
+            const endY = startY + this.canvas.height + tileSize;
+            
+            for (let y = startY; y < endY; y += tileSize) {
+                for (let x = startX; x < endX; x += tileSize) {
+                    this.ctx.drawImage(
+                        gridSprite,
+                        x - GameState.viewPosition.x,
+                        y - GameState.viewPosition.y,
+                        tileSize,
+                        tileSize
+                    );
+                }
+            }
+        }
     },
     
     render() {

@@ -626,6 +626,9 @@ window.Tiles = {
         
         if (this.isTool(tileType)) return true;
         
+        // Allow grass to be placed on any tile (including solid ones)
+        if (tileType === 'grass') return true;
+        
         return !existingType.solid;
     }
 };
