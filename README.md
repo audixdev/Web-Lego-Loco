@@ -10,6 +10,7 @@ LEGO Loco Web Remake is a browser-based construction and simulation game inspire
 
 ## 🐛 Known Issues & Limitations
 
+- Rail turns are not the correct size yet
 - Train simulation not yet implemented
 - No sound effects or music
 - Limited to 2D top-down view
