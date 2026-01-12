@@ -1,5 +1,5 @@
 window.Utils = {
-    TILE_SIZE: 32,
+    TILE_SIZE: 64,
     CHUNK_SIZE: 16,
     
     screenToWorld(screenX, screenY, cameraX, cameraY) {
